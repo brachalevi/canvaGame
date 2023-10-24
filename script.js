@@ -1,4 +1,4 @@
-
+// Checking that this works!
 
 var myGamePiece;
 var myObstacles = [];
