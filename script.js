@@ -5,9 +5,9 @@ var myObstacles = [];
 var myScore;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 10, 120);
+    myGamePiece = new Component(30, 30, "red", 10, 120);
     myGamePiece.gravity = 0.05;
-    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    myScore = new Component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
 }
 
@@ -26,7 +26,7 @@ var myGameArea = {
     }
 }
 
-class Component() {
+class Component{
     constructor(width, height, color, x, y, type){
         this.type = type;
         this.score = 0;
@@ -40,7 +40,7 @@ class Component() {
         this.gravitySpeed = 0;
     }
 
-    this.update = function () {
+    update = function () {
         ctx = myGameArea.context;
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
@@ -51,20 +51,20 @@ class Component() {
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     }
-    this.newPos = function () {
+    newPos = function () {
         this.gravitySpeed += this.gravity;
         this.x += this.speedX;
         this.y += this.speedY + this.gravitySpeed;
         this.hitBottom();
     }
-    this.hitBottom = function () {
+    hitBottom = function () {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
             this.y = rockbottom;
             this.gravitySpeed = 0;
         }
     }
-    this.crashWith = function (otherobj) {
+    crashWith = function (otherobj) {
         var myleft = this.x;
         var myright = this.x + (this.width);
         var mytop = this.y;
@@ -98,8 +98,8 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
-        myObstacles.push(new component(10, height, "green", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "green", x, height + gap));
+        myObstacles.push(new Component(10, height, "green", x, 0));
+        myObstacles.push(new Component(10, x - height - gap, "green", x, height + gap));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
