@@ -38,16 +38,17 @@ class Component{
         this.y = y;
         this.gravity = 0;
         this.gravitySpeed = 0;
+        this.color = color;
     }
 
     update = function () {
-        ctx = myGameArea.context;
+        const ctx = myGameArea.context;
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
-            ctx.fillStyle = color;
+            ctx.fillStyle = this.color;
             ctx.fillText(this.text, this.x, this.y);
         } else {
-            ctx.fillStyle = color;
+            ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     }
